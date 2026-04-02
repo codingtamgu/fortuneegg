@@ -7,7 +7,7 @@ import { createFortune } from './lib/fortune';
 import './App.css';
 
 const CONTACTS_VIRAL_MODULE_ID = '55c1350e-0b58-4810-842a-55a36ad951df';
-const RETRY_AD_GROUP_ID = 'ait-ad-test-interstitial-id';
+const RETRY_AD_GROUP_ID = 'ait.v2.live.4f0ba4d8c69b42dd';
 
 const presets = [
   '좋아하는 사람에게 좋은 연락이 오면 좋겠어요.',
@@ -307,7 +307,7 @@ function App() {
     try {
       if (navigator.share) {
         await navigator.share({
-          title: 'Fortune Egg',
+          title: 'Fortune Eggs',
           text: shareText,
         });
       } else if (navigator.clipboard?.writeText) {
@@ -386,7 +386,7 @@ function App() {
                 <div className="intro-orb intro-orb-two" />
 
                 <div className="intro-copy">
-                  <p className="eyebrow">FORTUNE EGG</p>
+                  <p className="eyebrow">FORTUNE EGGS</p>
                   <h1>
                     소원을 적고
                     {'\n'}
