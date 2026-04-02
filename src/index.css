@@ -1,0 +1,85 @@
+:root {
+  font-family:
+    'Pretendard Variable',
+    'Pretendard',
+    'Noto Sans KR',
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  color: #191f28;
+  background:
+    radial-gradient(circle at top left, rgba(49, 130, 246, 0.06), transparent 28%),
+    linear-gradient(180deg, #f6f9fc 0%, #eef4fb 100%);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  min-width: 320px;
+  height: 100%;
+  touch-action: manipulation;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  min-height: 100svh;
+  height: 100%;
+  touch-action: manipulation;
+}
+
+button,
+textarea {
+  font: inherit;
+}
+
+button:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid rgba(49, 130, 246, 0.35);
+  outline-offset: 2px;
+}
+
+#root {
+  min-height: 100vh;
+  min-height: 100svh;
+  height: 100%;
+  touch-action: manipulation;
+}
+
+h1,
+h2,
+h3,
+p {
+  margin: 0;
+}
+
+h1 {
+  color: #191f28;
+  font-size: clamp(2rem, 4vw, 3.75rem);
+  line-height: 1.18;
+  letter-spacing: -0.03em;
+}
+
+h2 {
+  color: #191f28;
+  font-size: clamp(1.45rem, 3vw, 2rem);
+  line-height: 1.28;
+  letter-spacing: -0.02em;
+}
+
+h3 {
+  color: #191f28;
+  font-size: 1.4rem;
+  line-height: 1.35;
+  letter-spacing: -0.02em;
+}

@@ -1,0 +1,355 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
+    />
+    <title>포춘에그 이용약관</title>
+    <meta
+      name="description"
+      content="포춘에그 서비스 이용약관 페이지입니다."
+    />
+    <style>
+      :root {
+        color-scheme: light;
+        --bg: #f6efe4;
+        --panel: rgba(255, 252, 246, 0.92);
+        --line: rgba(78, 57, 22, 0.12);
+        --text: #2d1f0f;
+        --muted: #6d5a40;
+        --accent: #c9922f;
+        --accent-deep: #8c6220;
+        --shadow: 0 24px 80px rgba(93, 63, 18, 0.14);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        margin: 0;
+        min-height: 100%;
+        background:
+          radial-gradient(circle at top, rgba(255, 230, 175, 0.9), transparent 34%),
+          linear-gradient(180deg, #f7f0e6 0%, #efe4d3 100%);
+        color: var(--text);
+        font-family:
+          "Pretendard",
+          "Apple SD Gothic Neo",
+          "Noto Sans KR",
+          sans-serif;
+      }
+
+      body {
+        padding: 24px 16px 48px;
+      }
+
+      .page {
+        width: min(760px, 100%);
+        margin: 0 auto;
+      }
+
+      .hero,
+      .section {
+        border: 1px solid var(--line);
+        background: var(--panel);
+        border-radius: 28px;
+        box-shadow: var(--shadow);
+        backdrop-filter: blur(18px);
+      }
+
+      .hero {
+        position: relative;
+        overflow: hidden;
+        padding: 28px 24px;
+        margin-bottom: 16px;
+      }
+
+      .hero::after {
+        content: "";
+        position: absolute;
+        inset: auto -80px -80px auto;
+        width: 220px;
+        height: 220px;
+        border-radius: 50%;
+        background: radial-gradient(circle, rgba(255, 219, 128, 0.7), transparent 70%);
+        pointer-events: none;
+      }
+
+      .eyebrow {
+        margin: 0 0 8px;
+        color: var(--accent-deep);
+        font-size: 12px;
+        font-weight: 800;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+      }
+
+      h1 {
+        margin: 0;
+        font-size: 32px;
+        line-height: 1.2;
+        letter-spacing: -0.04em;
+      }
+
+      .hero p {
+        margin: 14px 0 0;
+        color: var(--muted);
+        font-size: 15px;
+        line-height: 1.65;
+      }
+
+      .summary {
+        margin-top: 18px;
+        padding: 14px 16px;
+        border-radius: 18px;
+        background: rgba(255, 244, 212, 0.7);
+        color: var(--accent-deep);
+        font-size: 14px;
+        line-height: 1.6;
+      }
+
+      .section {
+        padding: 22px 20px;
+        margin-top: 14px;
+      }
+
+      h2 {
+        margin: 0 0 12px;
+        font-size: 18px;
+        line-height: 1.45;
+      }
+
+      p,
+      li {
+        margin: 0;
+        font-size: 15px;
+        line-height: 1.75;
+        color: var(--text);
+      }
+
+      ul {
+        margin: 0;
+        padding-left: 18px;
+      }
+
+      li + li,
+      p + p {
+        margin-top: 8px;
+      }
+
+      .meta {
+        display: grid;
+        gap: 10px;
+        margin-top: 18px;
+      }
+
+      .meta-item {
+        display: flex;
+        gap: 10px;
+        align-items: flex-start;
+        padding: 12px 14px;
+        border-radius: 16px;
+        background: rgba(255, 248, 234, 0.9);
+      }
+
+      .meta-label {
+        flex: 0 0 96px;
+        color: var(--muted);
+        font-weight: 700;
+      }
+
+      .notice {
+        margin-top: 16px;
+        padding: 14px 16px;
+        border-radius: 18px;
+        border: 1px dashed rgba(140, 98, 32, 0.28);
+        background: rgba(255, 250, 240, 0.92);
+        color: var(--muted);
+      }
+
+      .footer {
+        margin-top: 18px;
+        color: var(--muted);
+        font-size: 13px;
+        line-height: 1.7;
+        text-align: center;
+      }
+
+      @media (max-width: 640px) {
+        body {
+          padding: 16px 12px 40px;
+        }
+
+        .hero,
+        .section {
+          border-radius: 24px;
+        }
+
+        .hero {
+          padding: 24px 18px;
+        }
+
+        .section {
+          padding: 20px 16px;
+        }
+
+        h1 {
+          font-size: 28px;
+        }
+
+        .meta-item {
+          flex-direction: column;
+          gap: 4px;
+        }
+
+        .meta-label {
+          flex-basis: auto;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="page">
+      <section class="hero">
+        <p class="eyebrow">Fortune Egg Terms</p>
+        <h1>포춘에그 이용약관</h1>
+        <p>
+          본 약관은 포춘에그 서비스의 이용과 관련하여 서비스 운영자와 이용자 간의 권리,
+          의무 및 책임사항을 규정합니다.
+        </p>
+
+        <div class="meta">
+          <div class="meta-item">
+            <span class="meta-label">시행일</span>
+            <span>2026년 4월 2일</span>
+          </div>
+          <div class="meta-item">
+            <span class="meta-label">서비스명</span>
+            <span>포춘에그</span>
+          </div>
+          <div class="meta-item">
+            <span class="meta-label">운영자</span>
+            <span>운영자명 또는 법인명을 입력해 주세요</span>
+          </div>
+          <div class="meta-item">
+            <span class="meta-label">문의</span>
+            <span>support@example.com</span>
+          </div>
+        </div>
+
+        <div class="summary">
+          이 페이지는 앱인토스 콘솔에 등록할 수 있는 이용약관 기본 페이지입니다.
+          배포 전 운영자명, 연락처, 사업자 정보가 있다면 해당 내용으로 교체해 주세요.
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>제1조 목적</h2>
+        <p>
+          이 약관은 포춘에그 서비스와 관련하여 운영자가 제공하는 모바일 및 웹 서비스의 이용조건,
+          절차, 권리, 의무 및 책임사항을 정함을 목적으로 합니다.
+        </p>
+      </section>
+
+      <section class="section">
+        <h2>제2조 서비스 내용</h2>
+        <ul>
+          <li>이용자는 소원을 입력하고 포춘 메시지, 행동 힌트, 추가 해석 콘텐츠를 확인할 수 있습니다.</li>
+          <li>서비스에는 광고 시청, 공유 기능, 선택형 보상형 콘텐츠가 포함될 수 있습니다.</li>
+          <li>서비스는 오락 및 일반 정보 제공 목적이며, 의료, 법률, 투자, 심리상담 등 전문 자문을 대체하지 않습니다.</li>
+        </ul>
+      </section>
+
+      <section class="section">
+        <h2>제3조 이용계약의 성립</h2>
+        <ul>
+          <li>이용자는 본 약관에 동의한 뒤 서비스를 이용할 수 있습니다.</li>
+          <li>운영자는 관련 법령 또는 정책 위반 우려가 있는 경우 이용을 제한할 수 있습니다.</li>
+          <li>토스 로그인 등 외부 인증 수단을 사용하는 경우 해당 인증 절차 완료 후 일부 기능이 제공될 수 있습니다.</li>
+        </ul>
+      </section>
+
+      <section class="section">
+        <h2>제4조 이용자의 의무</h2>
+        <ul>
+          <li>이용자는 관련 법령, 본 약관, 서비스 내 안내사항을 준수해야 합니다.</li>
+          <li>타인의 권리를 침해하거나 서비스 운영을 방해하는 행위를 해서는 안 됩니다.</li>
+          <li>비정상적 접근, 자동화 도구 사용, 허위 정보 입력, 광고·보상 악용 행위는 금지됩니다.</li>
+        </ul>
+      </section>
+
+      <section class="section">
+        <h2>제5조 서비스 제공 및 변경</h2>
+        <ul>
+          <li>운영자는 서비스의 일부 또는 전부를 수정, 중단, 변경할 수 있습니다.</li>
+          <li>서비스 개선, 점검, 장애 대응, 외부 플랫폼 정책 변경 등에 따라 제공 방식이 달라질 수 있습니다.</li>
+          <li>운영자는 중요한 변경이 있는 경우 서비스 화면, 공지사항 또는 기타 합리적인 방법으로 안내합니다.</li>
+        </ul>
+      </section>
+
+      <section class="section">
+        <h2>제6조 광고 및 제휴 기능</h2>
+        <ul>
+          <li>서비스는 무료 콘텐츠 제공을 위해 광고 또는 제휴 기능을 포함할 수 있습니다.</li>
+          <li>이용자가 선택적으로 광고를 시청하거나 공유 기능을 사용할 경우, 그에 따른 보상성 콘텐츠가 제공될 수 있습니다.</li>
+          <li>광고 노출 및 보상 제공 방식은 외부 플랫폼 정책 및 기술 환경에 따라 달라질 수 있습니다.</li>
+        </ul>
+      </section>
+
+      <section class="section">
+        <h2>제7조 지식재산권</h2>
+        <ul>
+          <li>서비스에 포함된 문구, 디자인, 이미지, 구성, 소프트웨어에 대한 권리는 운영자 또는 정당한 권리자에게 귀속됩니다.</li>
+          <li>이용자는 운영자의 사전 동의 없이 서비스 콘텐츠를 복제, 배포, 전송, 판매, 2차적 저작물 작성 등의 방식으로 이용할 수 없습니다.</li>
+        </ul>
+      </section>
+
+      <section class="section">
+        <h2>제8조 책임 제한</h2>
+        <ul>
+          <li>운영자는 천재지변, 시스템 장애, 제3자 플랫폼 문제 등 불가항력적 사유로 인한 서비스 중단에 대해 책임을 지지 않습니다.</li>
+          <li>운영자는 이용자가 서비스 콘텐츠를 신뢰하여 내린 의사결정의 결과에 대해 보증하거나 책임지지 않습니다.</li>
+          <li>운영자는 이용자 상호 간 또는 이용자와 제3자 간 발생한 분쟁에 개입하지 않으며, 관련 책임을 부담하지 않습니다.</li>
+        </ul>
+      </section>
+
+      <section class="section">
+        <h2>제9조 약관의 변경</h2>
+        <ul>
+          <li>운영자는 관련 법령을 위반하지 않는 범위에서 본 약관을 변경할 수 있습니다.</li>
+          <li>약관을 변경하는 경우 시행일 및 변경 사유를 명시하여 시행 전 안내합니다.</li>
+          <li>변경된 약관 시행 이후에도 서비스를 계속 이용하는 경우 변경 약관에 동의한 것으로 봅니다.</li>
+        </ul>
+      </section>
+
+      <section class="section">
+        <h2>제10조 문의 및 분쟁 해결</h2>
+        <ul>
+          <li>서비스 이용 관련 문의는 아래 연락처를 통해 접수할 수 있습니다.</li>
+          <li>운영자 연락처: support@example.com</li>
+          <li>본 약관과 관련한 분쟁은 대한민국 법령에 따르며, 관련 법에 따른 관할 법원을 따릅니다.</li>
+        </ul>
+      </section>
+
+      <section class="section">
+        <h2>부칙</h2>
+        <p>본 약관은 2026년 4월 2일부터 시행합니다.</p>
+
+        <div class="notice">
+          앱인토스 콘솔 등록 전 최종 확인 항목:
+          운영자명, 이메일, 사업자 정보, 시행일, 유료 기능 여부, 환불 규정 필요 여부
+        </div>
+      </section>
+
+      <p class="footer">
+        배포 후 약관 URL 예시:
+        <br />
+        https://your-domain.com/terms/
+      </p>
+    </main>
+  </body>
+</html>

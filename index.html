@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
+    />
+    <meta
+      name="description"
+      content="희망사항을 적고 에그를 깨면 오늘의 포춘 문장을 보여주는 앱인토스 스타일 웹 프로토타입"
+    />
+    <title>포츈에그</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script>
+      ['gesturestart', 'gesturechange', 'gestureend'].forEach((eventName) => {
+        document.addEventListener(
+          eventName,
+          (event) => {
+            event.preventDefault();
+          },
+          { passive: false },
+        );
+      });
+    </script>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
