@@ -18,7 +18,7 @@ export function EggStage({ phase, disabled, onCrack, onBack }: EggStageProps) {
   return (
     <section className="panel egg-panel">
       <div className="panel-copy">
-        <p className="eyebrow">FORTUNE EGGS</p>
+        <p className="eyebrow">포츈에그</p>
         <h2>
           오늘의 에그를 깨면
           <br />

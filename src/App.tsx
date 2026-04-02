@@ -307,7 +307,7 @@ function App() {
     try {
       if (navigator.share) {
         await navigator.share({
-          title: 'Fortune Eggs',
+          title: '포츈에그',
           text: shareText,
         });
       } else if (navigator.clipboard?.writeText) {
@@ -386,7 +386,7 @@ function App() {
                 <div className="intro-orb intro-orb-two" />
 
                 <div className="intro-copy">
-                  <p className="eyebrow">FORTUNE EGGS</p>
+                  <p className="eyebrow">포츈에그</p>
                   <h1>
                     소원을 적고
                     {'\n'}
