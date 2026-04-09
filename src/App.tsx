@@ -3,25 +3,72 @@ import { EggStage } from './components/EggStage';
 import { FortuneForm } from './components/FortuneForm';
 import { FortuneResultCard } from './components/FortuneResult';
 import { RewardModal } from './components/RewardModal';
+import { categoryOptions } from './data/fortunePool';
 import { createFortune } from './lib/fortune';
+import type { FortuneCategory, FortuneInput } from './types';
 import './App.css';
 
 const CONTACTS_VIRAL_MODULE_ID = '55c1350e-0b58-4810-842a-55a36ad951df';
 const RETRY_AD_GROUP_ID = 'ait.v2.live.4f0ba4d8c69b42dd';
 
-const presets = [
-  '좋아하는 사람에게 좋은 연락이 오면 좋겠어요.',
-  '면접 결과가 기대한 방향으로 열리면 좋겠어요.',
-  '요즘 마음이 조금 더 가벼워지면 좋겠어요.',
-  '지금 고민하는 관계가 조금 더 선명해지면 좋겠어요.',
-];
+const presetMap: Record<FortuneCategory, string[]> = {
+  wish: [
+    '이번 주에는 기다리던 흐름이 조금 더 또렷해졌으면 좋겠어요.',
+    '조금 불안하더라도 결국 좋은 방향으로 이어졌으면 좋겠어요.',
+    '내가 기대하는 소식이 부드럽게 닿았으면 좋겠어요.',
+    '지금 마음이 흔들리지 않고 편안해졌으면 좋겠어요.',
+  ],
+  love: [
+    '좋아하는 사람과의 흐름이 조금 더 자연스럽게 가까워졌으면 좋겠어요.',
+    '애매했던 마음이 따뜻한 신호로 돌아왔으면 좋겠어요.',
+    '부담 없이 대화가 다시 이어졌으면 좋겠어요.',
+    '오늘은 연애운이 부드럽게 열렸으면 좋겠어요.',
+  ],
+  reconnect: [
+    '멀어진 사람과의 흐름이 천천히 다시 이어졌으면 좋겠어요.',
+    '어색했던 분위기가 조금은 풀렸으면 좋겠어요.',
+    '다시 연락이 닿아도 부담스럽지 않았으면 좋겠어요.',
+    '관계가 예전보다 더 편안하게 회복됐으면 좋겠어요.',
+  ],
+  relationship: [
+    '사람들과의 분위기가 조금 더 편안해졌으면 좋겠어요.',
+    '오해가 있다면 부드럽게 풀렸으면 좋겠어요.',
+    '내 마음이 잘 전달되는 하루였으면 좋겠어요.',
+    '오늘은 관계에서 괜한 긴장이 줄었으면 좋겠어요.',
+  ],
+  money: [
+    '불안한 지출 흐름이 조금 정리됐으면 좋겠어요.',
+    '돈 문제에서 숨 돌릴 여유가 생겼으면 좋겠어요.',
+    '이번 주에는 금전운이 안정적으로 흘렀으면 좋겠어요.',
+    '작은 선택이 좋은 결과로 이어졌으면 좋겠어요.',
+  ],
+  work: [
+    '일에서 막혀 있던 흐름이 조금 더 풀렸으면 좋겠어요.',
+    '내가 한 노력이 좋은 평가로 이어졌으면 좋겠어요.',
+    '기다리던 답이나 기회가 가까워졌으면 좋겠어요.',
+    '오늘은 일에서 방향이 분명해졌으면 좋겠어요.',
+  ],
+  study: [
+    '준비하던 일이 좋은 결과로 이어졌으면 좋겠어요.',
+    '집중이 잘되고 마음이 덜 흔들렸으면 좋겠어요.',
+    '지금까지 쌓은 노력이 제대로 빛났으면 좋겠어요.',
+    '오늘은 공부운이 차분하게 열렸으면 좋겠어요.',
+  ],
+  health: [
+    '몸과 마음이 조금 더 가볍게 회복됐으면 좋겠어요.',
+    '지친 컨디션이 천천히 안정됐으면 좋겠어요.',
+    '오늘은 건강 흐름이 부드럽게 올라왔으면 좋겠어요.',
+    '무리하지 않아도 회복되는 하루였으면 좋겠어요.',
+  ],
+};
 
-type Page = 'intro' | 'wish' | 'egg' | 'result';
+type Page = 'intro' | 'category' | 'wish' | 'egg' | 'result';
 type EggPhase = 'idle' | 'shaking' | 'cracking' | 'opened';
 type RetryAdMode = 'ready' | 'loading' | 'showing' | 'simulating';
 
 function App() {
   const [wish, setWish] = useState('');
+  const [category, setCategory] = useState<FortuneCategory>('wish');
   const [page, setPage] = useState<Page>('intro');
   const [eggPhase, setEggPhase] = useState<EggPhase>('idle');
   const [rewardOpen, setRewardOpen] = useState(false);
@@ -30,20 +77,32 @@ function App() {
   const [shareLabel, setShareLabel] = useState('친구에게 공유하기');
   const [retryAdMode, setRetryAdMode] = useState<RetryAdMode>('ready');
   const [retryAdLoaded, setRetryAdLoaded] = useState(false);
-  const [retryAdHint, setRetryAdHint] = useState('광고를 보고 다른 소원을 다시 열 수 있어요.');
+  const [retryAdHint, setRetryAdHint] = useState('광고를 보고 다른 소원을 다시 열어보세요.');
 
   const animationTimersRef = useRef<number[]>([]);
   const retryAdLoadCleanupRef = useRef<null | (() => void)>(null);
   const retryAdShowCleanupRef = useRef<null | (() => void)>(null);
 
   const normalizedWish = wish.trim();
-  const fortune = useMemo(() => {
+  const presets = useMemo(() => presetMap[category], [category]);
+  const fortuneInput = useMemo<FortuneInput | null>(() => {
     if (!normalizedWish) {
       return null;
     }
 
-    return createFortune(normalizedWish);
-  }, [normalizedWish]);
+    return {
+      wish: normalizedWish,
+      category,
+    };
+  }, [normalizedWish, category]);
+
+  const fortune = useMemo(() => {
+    if (!fortuneInput) {
+      return null;
+    }
+
+    return createFortune(fortuneInput);
+  }, [fortuneInput]);
 
   const clearAnimationTimers = () => {
     for (const timer of animationTimersRef.current) {
@@ -62,10 +121,11 @@ function App() {
 
   const resetToWishPage = () => {
     setWish('');
+    setCategory('wish');
     setGoldenUnlocked(false);
     setShareLabel('친구에게 공유하기');
     setEggPhase('idle');
-    setPage('wish');
+    setPage('category');
   };
 
   const resetShareLabelLater = (nextLabel = '친구에게 공유하기') => {
@@ -114,7 +174,7 @@ function App() {
       cleanupRetryAdListeners();
       setRetryAdLoaded(false);
       setRetryAdMode('ready');
-      setRetryAdHint('광고를 보고 다른 소원을 다시 열 수 있어요.');
+      setRetryAdHint('광고를 보고 다른 소원을 다시 열어보세요.');
       return;
     }
 
@@ -128,7 +188,7 @@ function App() {
           if (!isCancelled) {
             setRetryAdLoaded(false);
             setRetryAdMode('ready');
-            setRetryAdHint('현재 환경에서는 전면광고 대신 기본 다시보기로 이어져요.');
+            setRetryAdHint('현재 환경에서는 전면광고 대신 기본 다시보기로 이어집니다.');
           }
           return;
         }
@@ -160,7 +220,7 @@ function App() {
 
             setRetryAdLoaded(false);
             setRetryAdMode('ready');
-            setRetryAdHint('전면광고를 불러오지 못해 기본 다시보기로 전환돼요.');
+            setRetryAdHint('광고를 불러오지 못해 기본 다시보기로 전환돼요.');
           },
         });
       } catch (error) {
@@ -172,7 +232,7 @@ function App() {
 
         setRetryAdLoaded(false);
         setRetryAdMode('ready');
-        setRetryAdHint('웹 미리보기에서는 기본 다시보기로 진행해요.');
+        setRetryAdHint('이 환경에서는 기본 다시보기로 진행돼요.');
       }
     };
 
@@ -184,7 +244,7 @@ function App() {
   }, [rewardOpen]);
 
   const handleCrack = () => {
-    if (!normalizedWish || eggPhase !== 'idle') {
+    if (!fortuneInput || eggPhase !== 'idle') {
       return;
     }
 
@@ -206,7 +266,7 @@ function App() {
   };
 
   const handleGoToEgg = () => {
-    if (!normalizedWish) {
+    if (!fortuneInput) {
       return;
     }
 
@@ -218,7 +278,7 @@ function App() {
     setShareLabel('친구에게 공유하기');
     setRetryAdMode('ready');
     setRetryAdLoaded(false);
-    setRetryAdHint('광고를 보고 다른 소원을 다시 열 수 있어요.');
+    setRetryAdHint('광고를 보고 다른 소원을 다시 열어보세요.');
     setPage('egg');
   };
 
@@ -231,7 +291,7 @@ function App() {
   const startRetrySimulation = () => {
     setRetryAdMode('simulating');
     setRewardCountdown(5);
-    setRetryAdHint('잠시 후 다른 소원을 다시 열어드릴게요.');
+    setRetryAdHint('잠시 뒤 다른 소원을 다시 열어드릴게요.');
   };
 
   const handleRewardStart = async () => {
@@ -259,6 +319,7 @@ function App() {
             case 'show':
             case 'impression':
             case 'clicked':
+            case 'userEarnedReward':
               return;
             case 'dismissed':
               cleanupRetryAdListeners();
@@ -276,8 +337,6 @@ function App() {
               setRetryAdLoaded(false);
               startRetrySimulation();
               return;
-            case 'userEarnedReward':
-              return;
           }
         },
         onError: (error) => {
@@ -294,14 +353,15 @@ function App() {
   };
 
   const fallbackShare = async (unlockGolden: boolean) => {
-    if (!fortune) {
+    if (!fortune || !fortuneInput) {
       return;
     }
 
     const shareText = [
       `오늘의 포춘: ${fortune.message}`,
-      `소원: ${normalizedWish}`,
-      `행동 힌트: ${fortune.actionHint}`,
+      `흐름 해석: ${fortune.interpretation}`,
+      `오늘의 행동: ${fortune.actionHint}`,
+      `소원: ${fortuneInput.wish}`,
     ].join('\n');
 
     try {
@@ -388,18 +448,18 @@ function App() {
                 <div className="intro-copy">
                   <p className="eyebrow">포츈에그</p>
                   <h1>
-                    소원을 적고
-                    {'\n'}
-                    에그를 깨면,
+                    소원을 적고 에그를 깨면
                     {'\n'}
                     오늘의 징조가
                     {'\n'}
-                    한 문장으로 열립니다
+                    한 문장으로
+                    {'\n'}
+                    열립니다
                   </h1>
                   <p className="body-copy">
-                    첫 포춘은 무료로 열리고,
+                    분야 하나와 작은 바람만 적으면,
                     <br />
-                    더 깊은 해석은 황금 에그로 이어집니다.
+                    첫 포춘은 무료로 열리고 더 깊은 해석은 황금 에그로 이어집니다.
                   </p>
                 </div>
 
@@ -409,23 +469,50 @@ function App() {
                 </div>
 
                 <div className="policy-strip policy-strip--intro">
+                  <span>분야 선택</span>
+                  <span>희망 메시지</span>
                   <span>첫 포춘 무료</span>
-                  <span>광고는 선택형</span>
-                  <span>공유 후 황금 에그</span>
+                  <span>황금 에그 확장</span>
                 </div>
 
-                <button className="primary-button intro-start-button" type="button" onClick={() => setPage('wish')}>
+                <button
+                  className="primary-button intro-start-button"
+                  type="button"
+                  onClick={() => setPage('category')}
+                >
                   시작하기
                 </button>
               </section>
             ) : null}
 
-            {page === 'wish' ? (
+            {page === 'category' ? (
               <FortuneForm
+                step="category"
                 value={wish}
+                category={category}
                 presets={presets}
+                categoryOptions={categoryOptions}
                 onChange={setWish}
                 onPresetClick={setWish}
+                onCategoryChange={setCategory}
+                onNext={() => setPage('wish')}
+                onBack={() => setPage('intro')}
+                onSubmit={handleGoToEgg}
+              />
+            ) : null}
+
+            {page === 'wish' ? (
+              <FortuneForm
+                step="wish"
+                value={wish}
+                category={category}
+                presets={presets}
+                categoryOptions={categoryOptions}
+                onChange={setWish}
+                onPresetClick={setWish}
+                onCategoryChange={setCategory}
+                onNext={() => undefined}
+                onBack={() => setPage('category')}
                 onSubmit={handleGoToEgg}
               />
             ) : null}
@@ -433,17 +520,17 @@ function App() {
             {page === 'egg' ? (
               <EggStage
                 phase={eggPhase}
-                disabled={!normalizedWish}
+                disabled={!fortuneInput}
                 onCrack={handleCrack}
                 onBack={handleBackToWish}
               />
             ) : null}
 
-            {page === 'result' && fortune ? (
+            {page === 'result' && fortune && fortuneInput ? (
               <div className="result-reveal result-reveal--page">
                 <FortuneResultCard
                   result={fortune}
-                  wish={normalizedWish}
+                  wish={fortuneInput.wish}
                   goldenUnlocked={goldenUnlocked}
                   shareLabel={shareLabel}
                   onShare={handleShare}
@@ -458,13 +545,13 @@ function App() {
 
             {page === 'result' && !fortune ? (
               <section className="panel policy-panel">
-                <p className="eyebrow">POLICY NOTE</p>
-                <h2>포춘을 열 소원이 아직 비어 있어요.</h2>
+                <p className="eyebrow">FORTUNE NOTE</p>
+                <h2>소원이 아직 비어 있어요.</h2>
                 <ul className="policy-list">
-                  <li>먼저 소원을 적고 에그 페이지로 이동해 주세요.</li>
-                  <li>진입 직후 광고를 띄우지 않고 무료 결과를 먼저 보여줍니다.</li>
+                  <li>분야를 고른 뒤 희망 메시지를 적으면 포춘 에그를 열 수 있어요.</li>
+                  <li>첫 결과는 무료이고, 더 깊은 해석은 황금 에그에서 이어집니다.</li>
                 </ul>
-                <button className="primary-button" type="button" onClick={handleBackToWish}>
+                <button className="primary-button" type="button" onClick={resetToWishPage}>
                   소원 적으러 가기
                 </button>
               </section>

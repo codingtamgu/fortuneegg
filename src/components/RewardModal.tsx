@@ -51,7 +51,7 @@ export function RewardModal({
           <div className="ad-simulator">
             <div className="ad-box">
               <span className="ad-label">다시보기 진행 중</span>
-              <strong>{countdown}초 후에 다른 소원을 다시 적을 수 있어요.</strong>
+              <strong>{countdown}초 뒤에 다른 소원을 다시 적을 수 있어요.</strong>
               <p>현재 환경에 맞는 흐름으로 다시보기 페이지로 이어집니다.</p>
             </div>
           </div>
@@ -62,7 +62,9 @@ export function RewardModal({
             <div className="ad-box">
               <span className="ad-label">전면광고</span>
               <strong>
-                {mode === 'loading' ? '전면광고를 준비하고 있어요.' : '전면광고를 여는 중이에요.'}
+                {mode === 'loading'
+                  ? '전면광고를 준비하고 있어요.'
+                  : '전면광고를 여는 중이에요.'}
               </strong>
               <p>광고가 끝나면 바로 다른 소원을 다시 열 수 있어요.</p>
             </div>

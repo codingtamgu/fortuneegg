@@ -5,7 +5,7 @@ export default defineConfig({
   brand: {
     displayName: '포츈에그',
     primaryColor: '#C9922F',
-    icon: 'https://codingtamgu.github.io/fortuneegg/app-logo-600.png',
+    icon: 'https://static.toss.im/appsintoss/23573/82188b10-e516-480a-8482-9cba04107f32.png',
   },
   permissions: [],
   web: {

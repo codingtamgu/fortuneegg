@@ -25,7 +25,9 @@ export function EggStage({ phase, disabled, onCrack, onBack }: EggStageProps) {
           포춘이 열립니다
         </h2>
         <p className="body-copy">
-          첫 결과는 무료입니다. 결과를 확인한 뒤 더 깊은 해석이 필요하면 황금 에그로 이어집니다.
+          지금 적은 소원과 선택한 분야를 바탕으로
+          <br />
+          오늘의 징조와 한 문장 해석이 이어집니다.
         </p>
       </div>
 
@@ -56,9 +58,9 @@ export function EggStage({ phase, disabled, onCrack, onBack }: EggStageProps) {
       </button>
 
       <p className="egg-status">
-        {phase === 'idle' ? '가볍게 누르면 에그가 흔들리며 열립니다.' : null}
-        {phase === 'shaking' ? '에그가 흔들리고 있어요..' : null}
-        {phase === 'cracking' ? '금이 가고 있어요. 조금만 기다려 주세요.' : null}
+        {phase === 'idle' ? '알을 누르면 오늘의 포춘이 열립니다.' : null}
+        {phase === 'shaking' ? '에그가 흔들리고 있어요.' : null}
+        {phase === 'cracking' ? '껍질이 갈라지고 있어요. 조금만 기다려 주세요.' : null}
         {phase === 'opened' ? '포춘이 열렸어요. 아래 해석을 확인해 보세요.' : null}
       </p>
 

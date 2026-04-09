@@ -202,11 +202,84 @@
   gap: 10px;
 }
 
+.form-panel {
+  justify-content: flex-start;
+}
+
 .preset-list {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
   margin-bottom: 18px;
+}
+
+.selector-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-bottom: 18px;
+}
+
+.selector-stack--grow {
+  flex: 1;
+}
+
+.selector-group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.selector-copy {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.selector-label {
+  color: #191f28;
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.selector-grid {
+  display: grid;
+  gap: 10px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.selector-chip {
+  border: 1px solid #dbe8ff;
+  border-radius: 20px;
+  background: #f8fbff;
+  padding: 14px;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  cursor: pointer;
+  transition:
+    border-color 0.2s ease,
+    background-color 0.2s ease,
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.selector-chip strong {
+  color: #191f28;
+  font-size: 14px;
+}
+
+.selector-chip span {
+  color: #6b7684;
+  font-size: 12px;
+  line-height: 1.45;
+}
+
+.selector-chip.is-selected {
+  border-color: #3182f6;
+  background: #eef5ff;
+  box-shadow: 0 10px 20px rgba(49, 130, 246, 0.12);
 }
 
 .preset-chip {
@@ -234,6 +307,10 @@
   gap: 8px;
 }
 
+.text-field--grow {
+  flex: 1;
+}
+
 .text-field-label {
   color: #191f28;
   font-size: 15px;
@@ -252,6 +329,10 @@
   line-height: 1.6;
   box-sizing: border-box;
   resize: vertical;
+}
+
+.text-field--grow textarea {
+  min-height: 200px;
 }
 
 .text-field textarea:focus {
@@ -605,6 +686,23 @@
   line-height: 1.6;
 }
 
+.wish-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.meta-pill {
+  display: inline-flex;
+  padding: 8px 12px;
+  border-radius: 999px;
+  background: #eef4ff;
+  color: #255fcf;
+  font-size: 12px;
+  font-weight: 700;
+}
+
 .wish-label {
   color: #6b7684;
   font-size: 13px;
@@ -637,6 +735,10 @@
   color: #191f28;
   font-size: 18px;
   line-height: 1.5;
+}
+
+.analysis-card {
+  background: #f4f8ff;
 }
 
 .caution-card {
@@ -676,6 +778,26 @@
 
 .result-action-button {
   margin-top: 0;
+}
+
+.form-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: auto;
+}
+
+.form-actions .primary-button,
+.form-actions .ghost-button {
+  margin-top: 0;
+}
+
+.form-actions--split {
+  flex-direction: row;
+}
+
+.form-actions--split > * {
+  flex: 1;
 }
 
 .policy-panel {
@@ -896,6 +1018,14 @@
   .result-header,
   .reward-modal-head,
   .reward-actions {
+    flex-direction: column;
+  }
+
+  .selector-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .form-actions--split {
     flex-direction: column;
   }
 

@@ -33,7 +33,15 @@ export function FortuneResultCard({
         <div className="wish-card result-stack-item">
           <span className="wish-label">이번에 적은 소원</span>
           <p>{wish}</p>
+          <div className="wish-meta">
+            <span className="meta-pill">{result.categoryLabel}</span>
+          </div>
         </div>
+
+        <article className="fortune-card analysis-card result-stack-item">
+          <span>흐름 해석</span>
+          <strong>{result.interpretation}</strong>
+        </article>
 
         <article className="fortune-card result-stack-item">
           <span>오늘의 행동</span>
@@ -64,7 +72,7 @@ export function FortuneResultCard({
               type="button"
               onClick={onShareAndUnlockGolden}
             >
-              친구에게 공유하고 황금에그 열기
+              친구에게 공유하고 황금 에그 열기
             </button>
           )}
 

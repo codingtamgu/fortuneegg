@@ -1,15 +1,30 @@
-export type FortuneTopic =
+export type FortuneCategory =
+  | 'wish'
   | 'love'
+  | 'reconnect'
+  | 'relationship'
   | 'money'
   | 'work'
   | 'study'
-  | 'health'
-  | 'wish';
+  | 'health';
+
+export type FortuneOption<T extends string> = {
+  value: T;
+  label: string;
+  description: string;
+};
+
+export type FortuneInput = {
+  wish: string;
+  category: FortuneCategory;
+};
 
 export type FortuneResult = {
-  topic: FortuneTopic;
+  category: FortuneCategory;
+  categoryLabel: string;
   keyword: string;
   message: string;
+  interpretation: string;
   actionHint: string;
   caution: string;
   goldenMessage: string;
